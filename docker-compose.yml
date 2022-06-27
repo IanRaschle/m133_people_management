@@ -1,0 +1,12 @@
+version: '3.1'
+services:
+  mysql:
+    platform: linux/x86_64
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: "resuschronischt"
+      MYSQL_DATABASE: "management"
+    volumes:
+      - ./.data/mysql:/var/lib/mysql
+    ports:
+      - "3306:3306"

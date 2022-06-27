@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>management</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.6.0-1/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <div th:action="@{/}" th:each="person: ${persons}">
+        <div>
+            <a th:text="${person.firstName}"></a>
+            <a th:text="${person.lastName}"></a>
+            <a th:text="${person.email}"></a>
+            <a th:href="@{/edit}">Edit</a>
+            <form th:action="@{'/deletePerson/' + ${person.id}}" method="post">
+                <input type="submit" th:value="Delete">
+            </form>
+        </div>
+    </div>
+    <a th:href="@{/createPerson}">Add Person</a>
+</body>
+</html>
