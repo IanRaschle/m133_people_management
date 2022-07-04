@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>management</title>
+    <link rel="stylesheet" th:href="@{/bootstrap-5.2.0-beta1-dist/css/bootstrap.min.css}"/>
+</head>
+<body>
+    <div th:include="navbar"></div>
+    <div class="container">
+        <form th:action="@{/savePerson}" th:object="${person}" th:method="POST">
+            <input type="hidden" class="form-control" th:field="*{id}">
+            <div class="mb-3">
+                <label for="editName" class="form-label">Firstname</label>
+                <input type="text" class="form-control" id="editName" placeholder="Rhesus" th:field="*{firstName}">
+                <p th:if= "${#fields.hasErrors('firstName')}" th:errors="*{firstName}">Firstname Error</p>
+            </div>
+            <div class="mb-3">
+                <label for="editLastName" class="form-label">Lastname</label>
+                <input type="text" class="form-control" id="editLastName" placeholder="Chronischt" th:field="*{lastName}">
+                <p th:if= "${#fields.hasErrors('lastName')}" th:errors="*{lastName}">Lastname Error</p>
+            </div>
+            <div class="mb-3">
+                <label for="editEmail" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="editEmail" placeholder="lukas.schmit@gmail.com" th:field="*{email}">
+                <p th:if= "${#fields.hasErrors('email')}" th:errors="*{email}">Email address Error</p>
+            </div>
+            <div class="mb-3">
+                <label for="editBirthdate" class="form-label">Birthdate</label>
+                <input type="date" class="form-control" id="editBirthdate" th:field="*{birthdate}">
+                <p th:if= "${#fields.hasErrors('birthdate')}" th:errors="*{birthdate}">Birthdate Error</p>
+            </div>
+            <div class="mb-3">
+                <label for="editGender" class="form-label">Gender</label>
+                <select id="editGender" class="form-select" aria-label="Default select example" th:field="*{gender}">
+                    <option value="m" selected>Male</option>
+                    <option value="f">Female</option>
+                    <option value="o">Other</option>
+                </select>
+                <p th:if= "${#fields.hasErrors('gender')}" th:errors="*{gender}">Gender Error</p>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+            <a href="/" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script th:src="@{/bootstrap-5.2.0-beta1-dist/js/bootstrap.min.js}"></script>
+</body>
+</html>

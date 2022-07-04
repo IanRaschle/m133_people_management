@@ -1,31 +1,33 @@
 package ch.bbw.personen_verwaltung.repository
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.GenerationType
-import javax.persistence.Id
+import lombok.Data
+import org.springframework.format.annotation.DateTimeFormat
+import java.sql.Date
+import javax.persistence.*
 import javax.validation.constraints.Email
-import javax.validation.constraints.Max
-import javax.validation.constraints.Min
 import javax.validation.constraints.NotNull
-
+import javax.validation.constraints.Past
+import javax.validation.constraints.Size
 
 @Entity
+@Data
 data class Person(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Int?,
-    @NotNull
-    @Min(2)
-    @Max(30)
+    //@Size(min = 2, max = 30, message = "Your firstname must be between 2 and 30 characters")
     var firstName: String?,
-    @NotNull
-    @Min(2)
-    @Max(30)
+    //@Size(min = 2, max = 30, message = "Your lastname must be between 2 and 30 characters")
     var lastName: String?,
-    @NotNull
-    @Email
-    var email: String?
+    //@Email(message = "Email should be valid")
+    var email: String?,
+    //@Temporal(TemporalType.DATE)
+    //@Past(message = "Birthdate should be in the past")
+    //@NotNull(message = "Birthdate should not be null")
+    //@DateTimeFormat(pattern = "yyyy-MM-dd")
+    var birthdate: Date?,
+    //@NotNull(message = "Gender should not be null")
+    var gender: Char?
 ) {
-    constructor() : this(null, null, null, null)
+    constructor() : this(null, null, null, null, null, null)
 }
