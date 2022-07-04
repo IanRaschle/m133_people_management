@@ -15,6 +15,9 @@ data class Person(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var id: Int?,
+    /*
+    Die Validations haben bei mir nicht funktioniert. (Sie haben gesagt, ich soll diese in Kommentare setzten und es wäre gut so)
+     */
     //@Size(min = 2, max = 30, message = "Your firstname must be between 2 and 30 characters")
     var firstName: String?,
     //@Size(min = 2, max = 30, message = "Your lastname must be between 2 and 30 characters")
